@@ -20,42 +20,65 @@ body {
   background: #271b16;
   border-radius: 40px;
   box-shadow: 0 20px 80px rgba(0, 0, 0, 0.5);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0;
+  border: 4px solid #4f332b;
+  position: relative;
+  overflow: hidden;
+}
+
+.content-area {
+  flex: 1;
+  width: 100%;
   padding: 30px 20px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  border: 4px solid #4f332b;
-  animation: fadeIn 0.8s ease-in-out;
+  justify-content: flex-start;
 }
 
-.book-image img {
+.book-title {
+  color: white;
+  font-size: 20px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.book-image img,
+#book-image {
   width: 280px;
+  height: auto;
+  max-height: 380px;
+  object-fit: contain;
   border-radius: 20px;
   box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
-  margin-top: 30px;
 }
 
-/* Napit */
 .buttons {
-  margin-top: 50px;
+  margin-top: 30px;
   display: flex;
   gap: 30px;
+  justify-content: center;
+  height: 100px;
 }
 
 .circle-btn {
   width: 80px;
   height: 80px;
-  border-radius: 50%;
+  border-radius: 16px;
   border: 4px solid #4f332b;
   background-color: #271b16;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
   position: relative;
   overflow: hidden;
   padding: 10px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .circle-btn img {
@@ -64,23 +87,14 @@ body {
   object-fit: contain;
 }
 
-/* Like-väri */
 .like-btn {
   background-color: #D7EFBD;
 }
 
-/* Dislike-väri */
 .dislike-btn {
   background-color: #E6A289;
 }
 
-/* Hover */
-.circle-btn:hover {
-  transform: scale(1.1);
-  box-shadow: 0 0 12px rgba(79, 51, 43, 0.5);
-}
-
-/* Klikkausanimaatio */
 .circle-btn:active {
   animation: bounce 0.3s ease;
 }
@@ -99,12 +113,6 @@ body {
   z-index: 0;
 }
 
-/* Animaatiot */
-@keyframes fadeIn {
-  from { opacity: 0; transform: scale(0.95); }
-  to { opacity: 1; transform: scale(1); }
-}
-
 @keyframes bounce {
   0% { transform: scale(1); }
   30% { transform: scale(0.9); }
@@ -117,4 +125,67 @@ body {
     transform: translate(-50%, -50%) scale(1);
     opacity: 0;
   }
+}
+
+.footer-bar {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 60px;
+  background-color: #3b4932; /* voit muuttaa */
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+}
+
+.footer-icon {
+  padding: 8px;
+  border-radius: 12px;
+  transition: background-color 0.3s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.footer-icon img {
+  width: 28px;
+  height: 28px;
+  filter: brightness(0) invert(1); /* valkoinen väri tummalla taustalla */
+}
+
+/* Aktiivinen kuvake korostettuna */
+.footer-icon.active {
+  background-color: #ae7c61;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.footer-icon.active img {
+  filter: none; /* esim. alkuperäinen väri, jos haluat korostaa */
+}
+
+
+
+@keyframes slideOutRight {
+  100% {
+    transform: translateX(400px) rotate(20deg);
+    opacity: 0;
+  }
+}
+
+@keyframes slideOutLeft {
+  100% {
+    transform: translateX(-400px) rotate(-20deg);
+    opacity: 0;
+  }
+}
+
+#book-image.animate-right {
+  animation: slideOutRight 0.5s forwards;
+}
+
+#book-image.animate-left {
+  animation: slideOutLeft 0.5s forwards;
 }
