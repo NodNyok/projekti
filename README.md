@@ -25,3 +25,7 @@ git remote -v
 git branch -M main
 
 git push -u origin main
+
+### Hae uusin projektiversio githubista
+
+git pull origin
